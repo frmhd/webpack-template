@@ -1,0 +1,31 @@
+.w-page {
+    min-height: 100%;
+    margin-bottom: -60px;
+    padding-bottom: 100px;
+    &--staticPage {
+        margin-bottom: -120px;
+        padding-bottom: 160px;
+    }
+}
+.w-header {
+    width: 100%;
+    height: 60px;
+    background-color: $u_blue;
+    min-width: 1050px;
+}
+.w-container {
+    width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.w-footer {
+    min-height: 60px;
+    width: 100%;
+    background-color: #fff;
+}
+
+@include tablet {
+    .w-container {
+        width: 100%;
+    }
+}
