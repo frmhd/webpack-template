@@ -23,9 +23,7 @@ Start
 npm run start
 ```
 
-## Make block
-
-Start
+Make block
 ```
 npm run make-block block-name
 ```
