@@ -42,3 +42,4 @@ new2/
 /gulp-tasks/conf.coffee
 /build
 /application/config/production/payout/
+webpack-stats.json
