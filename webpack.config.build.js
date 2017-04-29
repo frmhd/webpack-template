@@ -1,51 +1,42 @@
-var path = require('path');
-var webpack = require('webpack');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpackConfig = require('./webpack.config');
+var path = require('path')
+var webpack = require('webpack')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var webpackConfig = require('./webpack.config')
 
-var extractSass = new ExtractTextPlugin('[name].[hash].css');
-var extractTwig = new ExtractTextPlugin('[name].[hash].html');
+var extractStyles = new ExtractTextPlugin('css/[name].[hash].css')
 
-webpackConfig.devtool = false;
+webpackConfig.devtool = false
 
 webpackConfig.plugins.push(
     new CleanWebpackPlugin(['build']),
-    extractSass,
-    extractTwig
-);
+    extractStyles
+)
 
 webpackConfig.module.rules.push({
-    test: /\.css$/,
-    loader: extractSass.extract({
-        fallback: "style-loader",
-        use: [
-            'css-loader',
-            'postcss-loader'
-        ]
-    }),
+  test: /\.css$/,
+  loader: extractStyles.extract({
+    fallback: 'style-loader',
+    use: [
+      'css-loader',
+      'postcss-loader'
+    ]
+  }),
 
-    test: /\.twig$/,
-    loader: extractTwig.extract({
-        use: [
-            'twig-loader'
-        ]
-    }),
-
-    test: /\.scss$/,
-    loader: extractSass.extract({
-        fallback: "style-loader",
-        use: [
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-        ]
-    })
-});
+  test: /\.styl$/,
+  loader: extractStyles.extract({
+    fallback: 'style-loader',
+    use: [
+      'css-loader',
+      'postcss-loader',
+      'stylus-loader'
+    ]
+  })
+})
 
 webpackConfig.output = {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].[hash].js'
-};
+  path: path.join(__dirname, 'build'),
+  filename: 'js/[name].[hash].js'
+}
 
-module.exports = webpackConfig;
+module.exports = webpackConfig
